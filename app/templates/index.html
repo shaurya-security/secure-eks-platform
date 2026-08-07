@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ app_name }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="background-grid"></div>
+<div class="background-glow glow-1"></div>
+<div class="background-glow glow-2"></div>
+
+<div class="container">
+
+<header>
+
+    <div class="title">
+
+        <h1>{{ app_name }}</h1>
+
+        <p>
+            Terraform • Amazon EKS • IRSA • External Secrets • PostgreSQL
+        </p>
+
+    </div>
+
+    <div class="version">
+        {{ app_version }}
+    </div>
+
+</header>
+
+
+<!-- ===================================================== -->
+<!-- PLATFORM -->
+<!-- ===================================================== -->
+
+<section class="card">
+
+    <h2>☸ Platform</h2>
+
+    <div class="grid-two">
+
+        <div class="item">
+            <span>Cluster</span>
+            <strong>{{ cluster_name }}</strong>
+        </div>
+
+        <div class="item">
+            <span>Environment</span>
+            <strong>{{ app_env }}</strong>
+        </div>
+
+        <div class="item">
+            <span>Pod</span>
+            <strong>{{ pod_name }}</strong>
+        </div>
+
+        <div class="item">
+            <span>Node</span>
+            <strong>{{ node_name }}</strong>
+        </div>
+
+        <div class="item">
+            <span>Version</span>
+            <strong>{{ app_version }}</strong>
+        </div>
+
+        <div class="item">
+            <span>Uptime</span>
+            <strong>{{ uptime }}</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- DATABASE -->
+<!-- ===================================================== -->
+
+<section class="card">
+
+<h2>🗄 PostgreSQL</h2>
+
+<div class="grid-two">
+
+<div class="item">
+
+<span>Status</span>
+
+<strong>
+
+{% if db_connected %}
+<span class="green-dot"></span>
+Connected
+{% else %}
+<span class="red-dot"></span>
+Disconnected
+{% endif %}
+
+</strong>
+
+</div>
+
+<div class="item">
+
+<span>Latency</span>
+
+<strong>
+
+{% if db_connected %}
+{{ db_latency }} ms
+{% else %}
+--
+{% endif %}
+
+</strong>
+
+</div>
+
+<div class="item">
+<span>Database</span>
+<strong>{{ db_name }}</strong>
+</div>
+
+<div class="item">
+<span>Engine</span>
+<strong>{{ db_version }}</strong>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- SECURITY -->
+<!-- ===================================================== -->
+
+<section class="card">
+
+<h2>🔒 Security</h2>
+
+<div class="grid-three">
+
+<div class="status success">
+IRSA
+</div>
+
+<div class="status success">
+OIDC
+</div>
+
+<div class="status success">
+Secrets Manager
+</div>
+
+<div class="status success">
+External Secrets
+</div>
+
+<div class="status success">
+TLS Ready
+</div>
+
+<div class="status success">
+IAM Roles
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- AWS -->
+<!-- ===================================================== -->
+
+<section class="card">
+
+<h2>☁ AWS Resources</h2>
+
+<div class="grid-three">
+
+<div class="resource">
+VPC
+</div>
+
+<div class="resource">
+EKS
+</div>
+
+<div class="resource">
+ECR
+</div>
+
+<div class="resource">
+RDS
+</div>
+
+<div class="resource">
+ALB Controller
+</div>
+
+<div class="resource">
+EBS CSI
+</div>
+
+<div class="resource">
+External Secrets
+</div>
+
+<div class="resource">
+KMS
+</div>
+
+<div class="resource">
+GitHub OIDC
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- SYSTEM -->
+<!-- ===================================================== -->
+
+<section class="card">
+
+<h2>💻 Runtime</h2>
+
+<div class="grid-two">
+
+<div class="item">
+<span>Hostname</span>
+<strong>{{ system.hostname }}</strong>
+</div>
+
+<div class="item">
+<span>Operating System</span>
+<strong>{{ system.platform }}</strong>
+</div>
+
+<div class="item">
+<span>Kernel</span>
+<strong>{{ system.platform_release }}</strong>
+</div>
+
+<div class="item">
+<span>Python</span>
+<strong>{{ system.python_version }}</strong>
+</div>
+
+<div class="item">
+<span>Architecture</span>
+<strong>{{ system.architecture }}</strong>
+</div>
+
+<div class="item">
+<span>CPU Cores</span>
+<strong>{{ system.cpu_count }}</strong>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- HEALTH -->
+<!-- ===================================================== -->
+
+<section class="card">
+
+<h2>❤️ Health</h2>
+
+<div class="health-grid">
+
+<div class="health success">
+Application
+</div>
+
+<div class="health success">
+Kubernetes
+</div>
+
+<div class="health {% if db_connected %}success{% else %}danger{% endif %}">
+Database
+</div>
+
+<div class="health success">
+Secrets
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+
+Built with
+
+<strong>Flask</strong> •
+
+<strong>Terraform</strong> •
+
+<strong>Amazon EKS</strong> •
+
+<strong>GitHub Actions</strong> •
+
+<strong>IRSA</strong> •
+
+<strong>External Secrets</strong> •
+
+<strong>AWS Secrets Manager</strong> •
+
+<strong>PostgreSQL</strong>
+
+</p>
+
+</footer>
+
+</div>
+
+</body>
+
+</html>

@@ -1,10 +1,18 @@
+# Python artifacts and environments
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
 # Local terraform directories
 **/.terraform/*
 **/.terraform/
+.terraform/
 
-# .tfstate files
-*.tfstate
-*.tfstate.*
+# Globally match .tfstate and plan files anywhere in subdirectories
+**/*.tfstate
+**/*.tfstate.*
+*tfplan*
 
 # Crash logs
 crash.log
@@ -20,6 +28,12 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 
-# .env files
+# Environment files
 .env
-.env.local
+.env.*
+!.env.example
+
+# OS and common IDEs
+.DS_Store
+.vscode/
+.idea/

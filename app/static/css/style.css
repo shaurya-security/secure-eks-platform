@@ -1,0 +1,600 @@
+/* ==========================================================
+   Secure EKS Platform
+   Dark Glassmorphism Dashboard
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#090b12;
+
+    --card:rgba(255,255,255,.06);
+
+    --border:rgba(255,255,255,.08);
+
+    --text:#f2f5ff;
+
+    --muted:#9aa5b3;
+
+    --green:#33d17a;
+
+    --red:#ff5d73;
+
+    --blue:#4cc2ff;
+
+    --purple:#8d6bff;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+
+
+/* ==========================================================
+   Background
+========================================================== */
+
+.background-grid{
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+
+        linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+
+        linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+    background-size:40px 40px;
+
+    z-index:-3;
+
+}
+
+.background-glow{
+
+    position:fixed;
+
+    width:600px;
+
+    height:600px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.18;
+
+    z-index:-2;
+
+    animation:floatGlow 16s ease-in-out infinite;
+
+}
+
+.glow-1{
+
+    background:#3578ff;
+
+    top:-180px;
+
+    left:-150px;
+
+}
+
+.glow-2{
+
+    background:#8f42ff;
+
+    bottom:-220px;
+
+    right:-180px;
+
+}
+
+@keyframes floatGlow{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(40px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   Layout
+========================================================== */
+
+.container{
+
+    width:min(1200px,92%);
+
+    margin:auto;
+
+    padding:50px 0;
+
+}
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+    gap:20px;
+
+}
+
+.title h1{
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    background:linear-gradient(
+
+        90deg,
+
+        #4cc2ff,
+
+        #8d6bff,
+
+        #48ffcf
+
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:gradientMove 10s linear infinite;
+
+    background-size:300%;
+
+}
+
+@keyframes gradientMove{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:300%;
+
+    }
+
+}
+
+.title p{
+
+    color:var(--muted);
+
+    margin-top:12px;
+
+    font-size:1rem;
+
+}
+
+.version{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:14px;
+
+    padding:14px 20px;
+
+    font-weight:700;
+
+}
+
+
+
+/* ==========================================================
+   Cards
+========================================================== */
+
+.card{
+
+    background:var(--card);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:28px;
+
+    margin-bottom:28px;
+
+    transition:.3s;
+
+    box-shadow:
+
+        0 0 40px rgba(0,0,0,.20);
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 10px 40px rgba(76,194,255,.18);
+
+}
+
+.card h2{
+
+    margin-bottom:24px;
+
+    font-size:1.35rem;
+
+}
+
+
+
+/* ==========================================================
+   Grid
+========================================================== */
+
+.grid-two{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
+
+.grid-three{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(180px,1fr));
+
+    gap:16px;
+
+}
+
+
+
+/* ==========================================================
+   Item
+========================================================== */
+
+.item{
+
+    padding:18px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.03);
+
+}
+
+.item span{
+
+    display:block;
+
+    color:var(--muted);
+
+    margin-bottom:8px;
+
+    font-size:.9rem;
+
+}
+
+.item strong{
+
+    font-size:1.05rem;
+
+}
+
+
+
+/* ==========================================================
+   Status
+========================================================== */
+
+.status,
+
+.resource,
+
+.health{
+
+    padding:18px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    font-weight:700;
+
+    background:rgba(255,255,255,.04);
+
+}
+
+.success{
+
+    border:1px solid rgba(51,209,122,.35);
+
+    color:var(--green);
+
+}
+
+.danger{
+
+    border:1px solid rgba(255,93,115,.35);
+
+    color:var(--red);
+
+}
+
+
+
+/* ==========================================================
+   Health Grid
+========================================================== */
+
+.health-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(180px,1fr));
+
+    gap:18px;
+
+}
+
+
+
+/* ==========================================================
+   LED Indicators
+========================================================== */
+
+.green-dot{
+
+    display:inline-block;
+
+    width:11px;
+
+    height:11px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    margin-right:8px;
+
+    box-shadow:
+
+        0 0 10px var(--green),
+
+        0 0 20px var(--green);
+
+    animation:pulse 1.5s infinite;
+
+}
+
+.red-dot{
+
+    display:inline-block;
+
+    width:11px;
+
+    height:11px;
+
+    border-radius:50%;
+
+    background:var(--red);
+
+    margin-right:8px;
+
+    box-shadow:
+
+        0 0 10px var(--red),
+
+        0 0 20px var(--red);
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(.9);
+
+        opacity:.8;
+
+    }
+
+    50%{
+
+        transform:scale(1.15);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(.9);
+
+        opacity:.8;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   Footer
+========================================================== */
+
+footer{
+
+    margin-top:50px;
+
+    padding:25px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:.95rem;
+
+}
+
+footer strong{
+
+    color:white;
+
+}
+
+
+
+/* ==========================================================
+   Scrollbar
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:9px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2f3b56;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#11141d;
+
+}
+
+
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media(max-width:850px){
+
+header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.title h1{
+
+    font-size:2.2rem;
+
+}
+
+.version{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+.card{
+
+    padding:22px;
+
+}
+
+}
+
+@media(max-width:550px){
+
+.title h1{
+
+    font-size:1.8rem;
+
+}
+
+.grid-two,
+
+.grid-three,
+
+.health-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
