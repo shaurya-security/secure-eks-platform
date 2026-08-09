@@ -17,10 +17,10 @@ spec:
   data:
     - secretKey: username
       remoteRef:
-        key: arn:aws:secretsmanager:ap-south-1:310454703862:secret:rds!db-29f6be50-58fc-450b-9fa1-101c60dcc86e-DS9sU7
+        key: ${DB_SECRET_ARN}
         property: username
 
     - secretKey: password
       remoteRef:
-        key: arn:aws:secretsmanager:ap-south-1:310454703862:secret:rds!db-29f6be50-58fc-450b-9fa1-101c60dcc86e-DS9sU7
+        key: ${DB_SECRET_ARN}
         property: password

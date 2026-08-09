@@ -47,3 +47,6 @@ output "database_secret_arn" {
   value = module.postgres.db_instance_master_user_secret_arn
 }
 
+output "aws_region" {
+  value = var.aws_region
+}
